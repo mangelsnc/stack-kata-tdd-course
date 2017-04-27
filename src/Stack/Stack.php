@@ -33,6 +33,10 @@ class Stack
 
     public function pop()
     {
+        if (0 === $this->count()) {
+            throw new EmptyStackException();
+        }
+
         $element = $this->stack[$this->getPointer()];
         unset($this->stack[$this->getPointer()]);
         $this->pointer--;

@@ -4,6 +4,7 @@ use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
+use Stack\EmptyStackException;
 use Stack\Stack;
 use PHPUnit\Framework\Assert;
 
@@ -14,6 +15,9 @@ class FeatureContext implements Context
 {
     /** @var Stack */
     private $stack;
+
+    /** @var  int */
+    private $exception;
 
     /**
      * Initializes context.
@@ -62,8 +66,11 @@ class FeatureContext implements Context
      * @When I perform a pop into the stack
      */
     public function iPerformAPopIntoTheStack()
-    {
-        $this->stack->pop();
+    {   try {
+            $this->stack->pop();
+        } catch(EmptyStackException $e) {
+            $this->exception = $e;
+        }
     }
 
     /**
@@ -71,6 +78,7 @@ class FeatureContext implements Context
      */
     public function itShouldThrowAnEmptyStackException()
     {
-        throw new PendingException();
+        Assert::assertInstanceOf(EmptyStackException::class, $this->exception);
+        $this->exception = null;
     }
 }
