@@ -10,8 +10,8 @@ y el puntero va actualizando su dirección para hacerla coincidir con el último
 
 Las dos operaciones aplicables a todas las pilas son:
 
-* **Apilar:** colocar un nuevo dato en la pila. Se lee el puntero para localizar el último elemento, se incorpora a continuación de este y se redirecciona el puntero para que apunte al nuevo dato incorporado.
-* **Desapilar:** extraer un dato de la pila. Se localiza el último dato mediante el puntero, se lee el dato y se redirecciona el puntero al elemento inmediato anterior para que vuelva a apuntar al último dato de la pila.
+* **Push:** colocar un nuevo dato en la pila. Se lee el puntero para localizar el último elemento, se incorpora a continuación de este y se redirecciona el puntero para que apunte al nuevo dato incorporado.
+* **Pop:** extraer un dato de la pila. Se localiza el último dato mediante el puntero, se lee el dato y se redirecciona el puntero al elemento inmediato anterior para que vuelva a apuntar al último dato de la pila.
 
 Una pila queda definida por su origen (una dirección de memoria), y su capacidad para 
 almacenar datos. Cuando se intenta leer más allá de su origen (esto es, se intenta leer un 
