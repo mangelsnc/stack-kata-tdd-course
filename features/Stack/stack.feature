@@ -17,21 +17,21 @@ Feature: Stack
 
   Scenario: Push one element into a stack
     Given a new stack
-    When I perform a push into the stack
+    When I perform a push of 1 into the stack
     Then I should have 1 elements in the stack
     And the pointer should be 1
 
   Scenario: Push several elements into a stack
     Given a new stack
-    When I perform a push into the stack
-    And I perform a push into the stack
+    When I perform a push of 1 into the stack
+    And I perform a push of 2 into the stack
     Then I should have 2 elements in the stack
     And the pointer should be 2
 
   Scenario: Push several elements into a stack and pop one
     Given a new stack
-    When I perform a push into the stack
-    And I perform a push into the stack
+    When I perform a push of 1 into the stack
+    And I perform a push of 2 into the stack
     And I perform a pop into the stack
     Then I should have 1 elements in the stack
     And the pointer should be 1

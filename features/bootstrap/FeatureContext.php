@@ -4,12 +4,17 @@ use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
+use Stack\Stack;
+use PHPUnit\Framework\Assert;
 
 /**
  * Defines application features from the specific context.
  */
 class FeatureContext implements Context
 {
+    /** @var Stack */
+    private $stack;
+
     /**
      * Initializes context.
      *
@@ -26,31 +31,31 @@ class FeatureContext implements Context
      */
     public function aNewStack()
     {
-        throw new PendingException();
+        $this->stack = new Stack();
     }
 
     /**
-     * @Then I should have :arg1 elements in the stack
+     * @Then I should have :count elements in the stack
      */
-    public function iShouldHaveElementsInTheStack($arg1)
+    public function iShouldHaveElementsInTheStack($count)
     {
-        throw new PendingException();
+        Assert::assertEquals($count, $this->stack->count());
     }
 
     /**
-     * @When I perform a push into the stack
+     * @When I perform a push of :element into the stack
      */
-    public function iPerformAPushIntoTheStack()
+    public function iPerformAPushIntoTheStack($element)
     {
-        throw new PendingException();
+        $this->stack->push($element);
     }
 
     /**
-     * @Then the pointer should be :arg1
+     * @Then the pointer should be :position
      */
-    public function thePointerShouldBe($arg1)
+    public function thePointerShouldBe($position)
     {
-        throw new PendingException();
+        Assert::assertEquals($position, $this->stack->getPointer());
     }
 
     /**
@@ -58,7 +63,7 @@ class FeatureContext implements Context
      */
     public function iPerformAPopIntoTheStack()
     {
-        throw new PendingException();
+        $this->stack->pop();
     }
 
     /**
