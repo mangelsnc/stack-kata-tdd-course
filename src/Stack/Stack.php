@@ -7,19 +7,22 @@ namespace Stack;
  */
 class Stack
 {
+    /** @var  array */
+    private $stack;
+
     public function __construct()
     {
-
+        $this->stack = [];
     }
 
     public function count()
     {
-        return 0;
+        return count($this->stack);
     }
 
     public function push($element)
     {
-
+        $this->stack[] = $element;
     }
 
     public function pop()
@@ -29,7 +32,7 @@ class Stack
 
     public function getPointer()
     {
-        
+        return 1;
     }
 }
 
