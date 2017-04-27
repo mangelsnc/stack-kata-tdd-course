@@ -40,6 +40,8 @@ class Stack
         $element = $this->stack[$this->getPointer()];
         unset($this->stack[$this->getPointer()]);
         $this->pointer--;
+
+        return $element;
     }
 
     public function getPointer()

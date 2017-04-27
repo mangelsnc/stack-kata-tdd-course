@@ -2,8 +2,6 @@
 
 use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
-use Behat\Gherkin\Node\PyStringNode;
-use Behat\Gherkin\Node\TableNode;
 use Stack\EmptyStackException;
 use Stack\Stack;
 use PHPUnit\Framework\Assert;
@@ -19,6 +17,9 @@ class FeatureContext implements Context
     /** @var  int */
     private $exception;
 
+    /** @var  int */
+    private $returned;
+
     /**
      * Initializes context.
      *
@@ -28,6 +29,8 @@ class FeatureContext implements Context
      */
     public function __construct()
     {
+        $this->exception = null;
+        $this->returned = null;
     }
 
     /**
@@ -40,6 +43,7 @@ class FeatureContext implements Context
 
     /**
      * @Then I should have :count elements in the stack
+     * @param $count
      */
     public function iShouldHaveElementsInTheStack($count)
     {
@@ -48,6 +52,7 @@ class FeatureContext implements Context
 
     /**
      * @When I perform a push of :element into the stack
+     * @param $element
      */
     public function iPerformAPushIntoTheStack($element)
     {
@@ -56,6 +61,7 @@ class FeatureContext implements Context
 
     /**
      * @Then the pointer should be :position
+     * @param $position
      */
     public function thePointerShouldBe($position)
     {
@@ -67,7 +73,7 @@ class FeatureContext implements Context
      */
     public function iPerformAPopIntoTheStack()
     {   try {
-            $this->stack->pop();
+            $this->returned = $this->stack->pop();
         } catch(EmptyStackException $e) {
             $this->exception = $e;
         }
@@ -80,5 +86,14 @@ class FeatureContext implements Context
     {
         Assert::assertInstanceOf(EmptyStackException::class, $this->exception);
         $this->exception = null;
+    }
+
+    /**
+     * @Then the returned value should be :returned
+     */
+    public function theReturnedValueShouldBe($returned)
+    {
+        Assert::assertEquals($returned, $this->returned);
+        $this->returned = null;
     }
 }

@@ -35,6 +35,7 @@ Feature: Stack
     And I perform a pop into the stack
     Then I should have 1 elements in the stack
     And the pointer should be 0
+    And the returned value should be 2
 
   Scenario: Pop from an empty stack
     Given a new stack
